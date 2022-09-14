@@ -1,0 +1,22 @@
+@use "base/variables" as v;
+@use "base/mixins" as m;
+.iconos {
+  margin-top: 5rem;
+  .listado-iconos {
+    display: flex;
+    flex-direction: column;
+    @include m.tablet {
+      flex-direction: row;
+    }
+
+    li {
+      margin: 0 auto;
+      width: 12rem;
+      p {
+        font-family: v.$fuenteCursiva;
+        font-size: 3.2rem;
+        color: v.$primario;
+      }
+    }
+  }
+}
