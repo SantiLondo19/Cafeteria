@@ -4,11 +4,11 @@
 .header {
   padding: 5rem 0;
   position: relative;
-
-  @include m.tablet { 
+  background-repeat: no-repeat;
+  background-size: cover;
+  @include m.tablet {
     min-height: 70rem;
   }
-
 
   &::before {
     content: "";
@@ -28,7 +28,7 @@
       text-transform: uppercase;
       margin-top: 5rem;
 
-      @include m.tablet { 
+      @include m.tablet {
         margin-top: 10rem;
       }
     }
@@ -38,4 +38,8 @@
 // Header de cada pagina
 .header-inicio {
   background-image: url("../img/header_inicio.jpg");
+}
+
+.header-nosotros {
+  background-image: url("../img/header_nosotros.jpg");
 }
