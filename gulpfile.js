@@ -3,6 +3,8 @@ const sass = require("gulp-sass")(require("sass"));
 const plumber = require("gulp-plumber");
 const postcss = require("gulp-postcss");
 const autoprefixer = require("autoprefixer");
+const sourcemaps = require("gulp-sourcemaps");
+const cssnano = require('cssnano');
 
 //Imagenes
 const imagemin = require("gulp-imagemin");
@@ -15,9 +17,11 @@ function css(done) {
   //Compilarla
   //Guardarla
   src("src/scss/app.scss")
+    .pipe(sourcemaps.init())
     .pipe(plumber())
     .pipe(sass())
-    .pipe(postcss([autoprefixer()]))
+    .pipe(postcss([autoprefixer(), cssnano()]))
+    .pipe(sourcemaps.write('.'))
     .pipe(dest("build/css"));
 
   done();
@@ -31,14 +35,14 @@ function imagenes() {
 
 function versionWebp() {
   return src("src/img/**/*.{png,jpg}").pipe(webp()).pipe(dest("build/img"));
-
 }
 function versionAvif() {
   const opciones = {
-    quality: 50
-  }
-  return src("src/img/**/*.{png,jpg}").pipe(avif(opciones)).pipe(dest("build/img"));
-
+    quality: 50,
+  };
+  return src("src/img/**/*.{png,jpg}")
+    .pipe(avif(opciones))
+    .pipe(dest("build/img"));
 }
 
 function dev() {
